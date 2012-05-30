@@ -39,6 +39,10 @@ class Inboxes::DiscussionsController < Inboxes::BaseController
       render :action => "new"
     end
   end
+  
+  def settings
+    @settings = InboxesSetting.find_or_create_by_user_id(current_user)
+  end
 
   private
   

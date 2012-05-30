@@ -20,11 +20,19 @@ class InstallInboxes < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    create_table :inboxes_settings do |t|
+      t.references :user
+      t.boolean :send_email_notification, :default => 1
+      
+      t.timestamps
+    end
   end
 
   def self.down
     drop_table :speakers
     drop_table :discussions
     drop_table :messages
+    drop_table :inboxes_settings
   end
 end
