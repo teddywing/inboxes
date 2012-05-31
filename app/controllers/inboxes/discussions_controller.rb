@@ -1,4 +1,5 @@
 class Inboxes::DiscussionsController < Inboxes::BaseController
+  before_filter :authenticate_user!
   load_and_authorize_resource
   before_filter :load_and_check_discussion_recipient, :only => [:create, :new]
 
