@@ -35,7 +35,7 @@ class Inboxes::DiscussionsController < Inboxes::BaseController
     end
 
     if @discussion.save
-      deliver_email_notification(@discussion.messages.first.body)
+      deliver_email_notification(@discussion.messages.first)
       redirect_to @discussion, :notice => t("inboxes.discussions.started")
     else
       render :action => "new"
