@@ -7,10 +7,7 @@ class Inboxes::MessagesController < Inboxes::BaseController
     @message.discussion = @discussion
     @message.save
     
-    sender_index = @message.discussion.speakers.index {|speaker| speaker.user_id == current_user.id }
-    other_speakers = @message.discussion.speakers.dup
-    other_speakers.delete_at(sender_index)
-    InboxesMailer.received_message_deliver(other_speakers, User.find(@message.discussion.speakers.at(sender_index).user_id), @message)
+    deliver_email_notification(@message)
 
     respond_to do |format|
       format.html { redirect_to @message.discussion }
