@@ -6,7 +6,8 @@ class Speaker < ActiveRecord::Base
   validates :user, :discussion, :presence => true
 
   after_destroy :destroy_discussion
-
+  attr_accessible :discussion, :user, :updated_at, :user_id
+  
   private
 
   def destroy_discussion
